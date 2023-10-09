@@ -41,3 +41,12 @@ resource "aws_route53_record" "dns" {
   records = [aws_instance.instance[each.value["name"]].public_ip]
 }
 
+terraform {
+  backend "s3" {
+    bucket = "pavanbairu"
+    key    = "roboshop/dev/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
+
