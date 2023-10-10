@@ -1,5 +1,4 @@
 components = {
-  default = {
     frontend = {
       name          = "frontend"
       instance_type = "t2.micro"
@@ -8,7 +7,6 @@ components = {
       name          = "mongodb"
       instance_type = "t2.micro"
     }
-  }
 }
 
 env = "dev"
