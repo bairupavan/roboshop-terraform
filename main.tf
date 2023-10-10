@@ -1,26 +1,3 @@
-data "aws_ami" "centos" {
-  most_recent = true
-  name_regex  = "Centos-8-DevOps-Practice"
-  owners      = ["973714476881"]
-}
-
-data "aws_security_group" "sg" {
-  name = "allow-all"
-}
-
-variable "components" {
-  default = {
-    frontend = {
-      name          = "frontend"
-      instance_type = "t2.micro"
-    }
-    mongodb = {
-      name          = "mongodb"
-      instance_type = "t2.micro"
-    }
-  }
-}
-
 resource "aws_instance" "instance" {
   for_each = var.components
   ami                    = data.aws_ami.centos.image_id
@@ -40,13 +17,3 @@ resource "aws_route53_record" "dns" {
   ttl     = 300
   records = [aws_instance.instance[each.value["name"]].public_ip]
 }
-
-terraform {
-  backend "s3" {
-    bucket = "pavanbairu"
-    key    = "roboshop/dev/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
-
