@@ -15,7 +15,7 @@ resource "null_resource" "provisioner" {
     type     = "ssh"
     user     = "centos"
     password = "DevOps321"
-    host     = aws_instance.instance[var.component_name].private_ip
+    host     = aws_instance.instance.private_ip
   }
 
   provisioner "remote-exec" {
@@ -32,5 +32,5 @@ resource "aws_route53_record" "dns" {
   name    = "${var.component_name}-dev.pavanbairu.tech"
   type    = "A"
   ttl     = 300
-  records = [aws_instance.instance[var.component_name].private_ip]
+  records = [aws_instance.instance.private_ip]
 }
