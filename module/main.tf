@@ -67,10 +67,11 @@ resource "aws_iam_role_policy" "iam_role_policy" {
         "Sid" : "VisualEditor0",
         "Effect" : "Allow",
         "Action" : [
-          "ssm:GetParameterHistory", # 4 permissions are given
-          "ssm:GetParametersByPath",
-          "ssm:GetParameters",
-          "ssm:GetParameter"
+          "ssm:*",
+#          "ssm:GetParameterHistory",# 4 permissions are given
+#          "ssm:GetParametersByPath",
+#          "ssm:GetParameters",
+#          "ssm:GetParameter"
         ],
         "Resource" : "arn:aws:ssm:us-east-1:416622536569:parameter/${var.env}.${var.component_name}.*"
         # access to all the ARN path starts with env and component name
