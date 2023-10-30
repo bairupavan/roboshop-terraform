@@ -13,6 +13,10 @@ resource "aws_instance" "instance" {
 resource "null_resource" "provisioner" {
   depends_on = [aws_instance.instance, aws_route53_record.dns] # will execute only after successful creation of instance and route53
 
+  # triggers are used to run the resource when made any modifications
+  triggers = {
+    private_ip = aws_instance.instance.private_ip
+  }
   # connecting to the server using below credentials
   connection {
     type     = "ssh"
