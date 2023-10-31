@@ -5,9 +5,8 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [data.aws_security_group.sg.id]                #fetching security group id using data block
   iam_instance_profile   = aws_iam_instance_profile.instance_profile.name # attaching instance profile to each instance
 
-  tags = {
-    Name = local.name
-  }
+  tags = var.app_type == "app" ? local.app_tags : local.db_tags # checking if app_type is db then executes db else app
+
 }
 
 resource "null_resource" "provisioner" {
