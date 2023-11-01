@@ -19,5 +19,7 @@ locals {
 
   db_tags = {
     Name = "${var.component_name}-${var.env}"
+    env = var.env                                    #created more tag names in prometheus UI to identify the  app servers
+    component = var.component_name
   }
 }
