@@ -15,11 +15,11 @@ locals {
   app_tags = {
     Name = "${var.component_name}-${var.env}"
     Monitor = "true"    # monitoring app servers on prometheus server
+    env = var.env                                    #created more tag names in prometheus UI to identify the  app servers
+    component = var.component_name
   }
 
   db_tags = {
     Name = "${var.component_name}-${var.env}"
-    env = var.env                                    #created more tag names in prometheus UI to identify the  app servers
-    component = var.component_name
   }
 }
